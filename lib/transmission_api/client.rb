@@ -6,23 +6,19 @@ class TransmissionApi::Client
   attr_accessor :debug_mode
 
   TORRENT_FIELDS = [
-      "id",
-      "name",
-      "totalSize",
-      "addedDate",
-      "isFinished",
-      "rateDownload",
-      "rateUpload",
-      "percentDone",
-      "files",
-      "status"
+      'id',
+      'name',
+      'totalSize',
+      'addedDate',
+      'isFinished',
+      'rateDownload',
+      'rateUpload',
+      'percentDone',
+      'files',
+      'status',
+      'hashString',
+      'rateDownload'
   ]
-
-  STATUS = {
-      0 => :stopped,
-      4 => :in_progress,
-      6 => :delivered
-  }
 
   def initialize(opts)
     @url = opts[:url]
@@ -115,7 +111,6 @@ class TransmissionApi::Client
         )
     response
   end
-
 
   def post(opts)
     response_parsed = JSON::parse(http_post(opts).body)
