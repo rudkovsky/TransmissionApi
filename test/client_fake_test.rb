@@ -17,6 +17,14 @@ class ClientFakeTest < Minitest::Test
     assert_equal( "77831ec368308f1031434c5581a76fd0c3e06cfd", @client.create("filename")["hashString"] )
   end
 
+  def test_start
+    assert_equal( "77831ec368308f1031434c5581a76fd0c3e06cfd", @client.start("77831ec368308f1031434c5581a76fd0c3e06cfd"))
+  end
+
+  def test_stop
+    assert_equal( "77831ec368308f1031434c5581a76fd0c3e06cfd", @client.stop("77831ec368308f1031434c5581a76fd0c3e06cfd"))
+  end
+
   def test_destroy
     torrents = [
       { "hashString" => "A" },

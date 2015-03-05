@@ -18,13 +18,13 @@ class TransmissionApi::ClientFake < TransmissionApi::Client
 
   def create(filename)
     torrent = {
-      "files" => [],
-      "hashString" => "77831ec368308f1031434c5581a76fd0c3e06cfd",
-      "name" => "No Media Kings - Ghosts With Shit Jobs trailer",
-      "percentDone" => 0,
-      "rateUpload" => 0,
-      "rateDownload" => 0,
-      "totalSize" => 100
+        "files" => [],
+        "hashString" => "77831ec368308f1031434c5581a76fd0c3e06cfd",
+        "name" => "No Media Kings - Ghosts With Shit Jobs trailer",
+        "percentDone" => 0,
+        "rateUpload" => 0,
+        "rateDownload" => 0,
+        "totalSize" => 100
     }
 
     torrents << torrent
@@ -34,6 +34,14 @@ class TransmissionApi::ClientFake < TransmissionApi::Client
 
   def destroy(id)
     torrents.delete_if { |e| e["hashString"] == id }
+  end
+
+  def start(id)
+    torrents.select { |e| e["hashString"] == id }.first
+  end
+
+  def stop(id)
+    torrents.select { |e| e["hashString"] == id }.first
   end
 
 end
