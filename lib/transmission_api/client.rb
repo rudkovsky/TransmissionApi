@@ -17,7 +17,10 @@ class TransmissionApi::Client
       'files',
       'status',
       'hashString',
-      'rateDownload'
+      'rateDownload',
+      'startDate',
+      'error',
+      'doneDate'
   ]
 
   def initialize(opts)

@@ -44,8 +44,4 @@ class TransmissionApi::ClientFake < TransmissionApi::Client
     torrents.select { |e| e["hashString"] == id }.first
   end
 
-  def status_name
-    STATUS[self.status] || :unknown
-  end
-
 end
