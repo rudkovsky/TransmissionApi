@@ -22,7 +22,7 @@
     "percentDone": 0.51890000000000003,
     "rateDownload": 0,
     "rateUpload": 0,
-    "status": "in_progress",
+    "status": 4,
     "totalSize": 52147504
   },
   {
@@ -68,7 +68,7 @@
     "percentDone": 1,
     "rateDownload": 0,
     "rateUpload": 0,
-    "status": "delivered",
+    "status": 6,
     "totalSize": 31103230
   },
   {
@@ -99,7 +99,7 @@
     "percentDone": 1,
     "rateDownload": 0,
     "rateUpload": 0,
-    "status": "delivered",
+    "status": 6,
     "totalSize": 31773891
   },
   {
@@ -129,7 +129,7 @@
     "name": "Von Allan Studio - the road to god knows___ trailer",
     "percentDone": 0,
     "rateDownload": 0,
-    "status": "prepared",
+    "status": 1,
     "rateUpload": 0,
     "totalSize": 13896731
   }

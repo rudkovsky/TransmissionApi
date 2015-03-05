@@ -20,9 +20,8 @@ class TransmissionApi::Client
 
   STATUS = {
       0 => :stopped,
-      1 => :in_progress,
-      4 => :download,
-      5 => :delivered
+      4 => :in_progress,
+      6 => :delivered
   }
 
   def initialize(opts)
