@@ -6,21 +6,21 @@ class TransmissionApi::Client
   attr_accessor :debug_mode
 
   TORRENT_FIELDS = [
-      'id',
-      'name',
-      'totalSize',
-      'addedDate',
-      'isFinished',
-      'rateDownload',
-      'rateUpload',
-      'percentDone',
-      'files',
-      'status',
-      'hashString',
-      'rateDownload',
-      'startDate',
-      'error',
-      'doneDate'
+    'id',
+    'name',
+    'totalSize',
+    'addedDate',
+    'isFinished',
+    'rateDownload',
+    'rateUpload',
+    'percentDone',
+    'files',
+    'status',
+    'hashString',
+    'rateDownload',
+    'startDate',
+    'error',
+    'doneDate'
   ]
 
   def initialize(opts)
@@ -35,41 +35,41 @@ class TransmissionApi::Client
     log "get_torrents"
 
     response =
-        post(
-            :method => "torrent-get",
-            :arguments => {
-                :fields => fields
-            }
-        )
+      post(
+        :method => "torrent-get",
+        :arguments => {
+          :fields => fields
+        }
+    )
 
-    response["arguments"]["torrents"]
+      response["arguments"]["torrents"]
   end
 
   def find(id)
     log "get_torrent: #{id}"
 
     response =
-        post(
-            :method => "torrent-get",
-            :arguments => {
-                :fields => fields,
-                :ids => [id]
-            }
-        )
+      post(
+        :method => "torrent-get",
+        :arguments => {
+          :fields => fields,
+          :ids => [id]
+        }
+    )
 
-    response["arguments"]["torrents"].first
+      response["arguments"]["torrents"].first
   end
 
   def create(filename)
     log "add_torrent: #{filename}"
 
     response =
-        post(
-            :method => "torrent-add",
-            :arguments => {
-                :filename => filename
-            }
-        )
+      post(
+        :method => "torrent-add",
+        :arguments => {
+          :filename => filename
+        }
+    )
 
     response["arguments"]["torrent-added"]
   end
@@ -78,41 +78,50 @@ class TransmissionApi::Client
     log "remove_torrent: #{id}"
 
     response =
-        post(
-            :method => "torrent-remove",
-            :arguments => {
-                :ids => [id],
-                :"delete-local-data" => destroy
-            }
-        )
-
-    response
+      post(
+        :method => "torrent-remove",
+        :arguments => {
+          :ids => [id],
+          :"delete-local-data" => destroy
+        }
+    )
   end
 
   def start(id)
     log "torrent_start: #{id}"
 
     response =
-        post(
-            :method => "torrent-start",
-            :arguments => {
-                :ids => [id],
-            }
-        )
-    response
+      post(
+        :method => "torrent-start",
+        :arguments => {
+          :ids => [id],
+        }
+    )
   end
 
   def stop(id)
     log "torrent_stop: #{id}"
 
     response =
-        post(
-            :method => "torrent-stop",
-            :arguments => {
-                :ids => [id],
-            }
-        )
-    response
+      post(
+        :method => "torrent-stop",
+        :arguments => {
+          :ids => [id],
+        }
+    )
+  end
+
+  def move_to(id, position)
+    log "torrent-set for #{id} queuePosition: #{position}"
+
+    response =
+      post(
+        :method => "torrent-set",
+        :arguments => {
+          :ids => [id],
+          'queuePosition' => position.to_i
+        }
+    )
   end
 
   def post(opts)
@@ -127,8 +136,8 @@ class TransmissionApi::Client
 
   def http_post(opts)
     post_options = {
-        :body => opts.to_json,
-        :headers => {"x-transmission-session-id" => session_id}
+      :body => opts.to_json,
+      :headers => {"x-transmission-session-id" => session_id}
     }
     post_options.merge!(:basic_auth => basic_auth) if basic_auth
 
