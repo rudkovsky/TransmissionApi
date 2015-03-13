@@ -20,6 +20,7 @@ class TransmissionApi::Client
     'rateDownload',
     'startDate',
     'error',
+    'queuePosition',
     'doneDate'
   ]
 
